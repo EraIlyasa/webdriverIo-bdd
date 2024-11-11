@@ -42,7 +42,15 @@ export const config = {
     services: ['chromedriver'],
     framework: 'cucumber',
     
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+    reporters: [
+        'spec',
+        ['allure', { outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: true,
+            useCucumberStepReporter: true,
+            disableMochaHooks: true
+         }]
+    ],
 
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
