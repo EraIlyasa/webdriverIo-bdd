@@ -1,6 +1,5 @@
 import { $ } from '@wdio/globals'
-import Page from './page';
-
+import 
 /**
  * sub page containing specific selectors and methods for a specific page
  */

@@ -1,0 +1,21 @@
+{
+    "cucumberautocomplete.steps": [
+        "./src/step-definitions/**/*.ts"
+    ],
+    "cucumberautocomplete.strictGherkinCompletion": true,
+    "typescript.suggest.completeFunctionCalls": true,
+    "cSpell.words": [
+        "async",
+        "Then",
+        "When"
+    ],
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "${workspaceFolder:mobile-automation-vanguard}/.cspell/custom-dictionary-workspace.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    },
+    "editor.fontSize": 12,
+}

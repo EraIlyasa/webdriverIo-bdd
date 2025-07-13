@@ -10,7 +10,6 @@
         "types": [
             "node",
             "@wdio/globals/types",
-            "expect-webdriverio",
             "@wdio/cucumber-framework"
         ],
         "skipLibCheck": true,
@@ -24,8 +23,8 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "test",
         "wdio.conf.ts",
-        "features"
+        "test",
+        "src",
     ]
 }

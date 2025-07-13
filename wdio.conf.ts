@@ -1,6 +1,6 @@
 const allure = require('allure-commandline')
 
-export const config: WebdriverIO.Config = {
+exports.config = {
     //
     // ====================
     // Runner Configuration
@@ -9,72 +9,45 @@ export const config: WebdriverIO.Config = {
     runner: 'local',
     tsConfigPath: './tsconfig.json',
     
-    //
-    // ==================
-    // Specify Test Files
-    // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // of the configuration file being run.
-    //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process simply enclose them in an array within the specs array.
-    //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
-    //
     specs: [
-        './features/**/*.feature'
+        'test/features/**/*.feature'
     ],
-    // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
     ],
-    //
-    // ============
-    // Capabilities
-    // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your capabilities you can overwrite the spec and exclude options in
-    // order to group specific specs to a specific capability.
-    //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
-    // files and you set maxInstances to 10, all spec files will get tested at the same time
-    // and 30 processes will get spawned. The property handles how many capabilities
-    // from the same test should run tests.
-    //
-    maxInstances: 10,
-    //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
-    // https://saucelabs.com/platform/platform-configurator
-    //
+    maxInstances: 1,
+    // services: ['selenium-standalone'],
+    // capabilities: [{
+    //     browserName: 'chrome',
+    //     restartSession: true
+    // }],
+    
     capabilities: [{
-        browserName: 'chrome'
-    }],
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          args: ['--headless', '--disable-gpu']
+        },
+        // restartSession: true,  // Setel ini ke true untuk setiap tes restart sesi
+      }],
 
-    //
-    // ===================
-    // Test Configurations
-    // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
-    //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    
     logLevel: 'silent',
     bail: 0,
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     framework: 'cucumber',
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
 
+    reporters: [['spec', {}],['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+        useCucumberStepReporter: true,
+        disableMochaHooks: true
+    }]],
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./features/step-definitions/steps.ts'],
+        require: ['src/step-definitions/*.ts', 'src/hooks.ts'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -100,10 +73,20 @@ export const config: WebdriverIO.Config = {
     },
 
 
-    //
     // =====
     // Hooks
     // =====
+    afterScenario: async (scenario: any) => {
+        if (scenario.result && scenario.result.status === 'FAILED') {
+          const screenshot = await browser.takeScreenshot();
+          // Simpan screenshot jika tes gagal
+          // Bisa menggunakan Allure atau simpan ke direktori
+          const filePath = `./screenshots/${scenario.pickle.name}.png`;
+          require('fs').writeFileSync(filePath, screenshot, 'base64');
+          console.log(`Screenshot saved to ${filePath}`);
+        }
+    },
+
     onComplete: function() {
         const reportError = new Error('Could not generate Allure report')
         const generation = allure(['generate', 'allure-results', '--clean'])
