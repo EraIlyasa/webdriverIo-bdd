@@ -10,7 +10,7 @@ Feature: Testing Curahealth
         Examples:
                   | method | verify    |
                   | valid  | not exist |
-                  # | invalid | exist     |
+               #    | invalid | exist     |
 
         @login-02
         Scenario Outline: As a user, I can log into the secure area 2
@@ -23,6 +23,3 @@ Feature: Testing Curahealth
                   # | valid   | not exist |
                   | invalid | exist |
           
-
-        @login-03
-        Scenario:
