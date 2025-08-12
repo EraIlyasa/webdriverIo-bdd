@@ -12,14 +12,14 @@
     <img src="https://img.shields.io/github/followers/EraIlyasa?label=Follow&style=social" />
   </a>
 </p>
-## 📂 Project Showcase
+
+### Project Showcase
 
 ### 🚦 WebDriverIO BDD Automation Framework
 [![WebDriverIO BDD Framework](https://via.placeholder.com/800x400?text=WebDriverIO+BDD+Project+Preview)](https://github.com/EraIlyasa/webdriverIo-bdd)
 
 **Description:**  
-A Behavior-Driven Development (BDD) automation testing framework using **WebDriverIO**, **CucumberJS**, and **TypeScript** to test both web and mobile applications.  
-Designed for scalability, maintainability, and clear reporting for QA teams.
+A Behavior-Driven Development (BDD) automation testing framework using **WebDriverIO**, **CucumberJS**, and **TypeScript** to test both web and mobile applications. Designed for scalability, maintainability, and clear reporting for QA teams.
 
 **Key Features:**
 - Automated test execution for Web & Mobile
@@ -49,6 +49,7 @@ Designed for scalability, maintainability, and clear reporting for QA teams.
 
 ⭐️ From [EraIlyasa](https://github.com/EraIlyasa)
 
+---
 
 ## Installation ##
 1. npm init -y 
