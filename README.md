@@ -52,11 +52,11 @@ A Behavior-Driven Development (BDD) automation testing framework using **WebDriv
 ---
 
 ## Installation ##
-1. npm init -y 
-2. run these command `npm install --save-dev @wdio/cli @wdio/local-runner wdio-cucumber-framework @wdio/typescript-service ts-node typescript webdriverio`
+- npm init -y 
+- run these command `npm install --save-dev @wdio/cli @wdio/local-runner wdio-cucumber-framework @wdio/typescript-service ts-node typescript webdriverio`
 
 ## After Cloning The repo ## 
-1. run `npm install` 
+- run `npm install` 
 
 ## Run ## 
-npm run wdio 
+- npm run wdio 
