@@ -26,7 +26,6 @@ A Behavior-Driven Development (BDD) automation testing framework using **WebDriv
 - Cucumber Gherkin syntax for readable test cases
 - Allure Reporting integration
 - Page Object Model (POM) design pattern
-- CI/CD ready
 
 **Repository:** [🔗 View on GitHub](https://github.com/EraIlyasa/webdriverIo-bdd)
 
